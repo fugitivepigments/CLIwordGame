@@ -39,7 +39,7 @@ function Word(wrdup) {
     var render = '';
     //displays word based on letters found
     that.letters.forEach(function(letr) {
-      var letterCurrent = letr.wordDisplay();
+      var letterCurrent = letr.ifGuessed();
       render+= letterCurrent;
     });
 
