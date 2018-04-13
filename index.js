@@ -64,7 +64,7 @@ var hangman = {
         }
       }
     }]).then(function(letr) {
-      var letrUpper = (letr.chosenLetr).toUpperCase();
+      var letrUpper = (letr.letrGuessed).toUpperCase();
       var alreadyGuessed = false;
       for (var i = 0; i < that.guessedLetters.length; i++) {
         if (letrUpper === that.guessedLetters[i]) {

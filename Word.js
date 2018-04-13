@@ -26,7 +26,7 @@ function Word(wrdup) {
   this.checkLetter = function(guessedLetr) {
     var count = 0;
     this.letters.forEach(function(letr) {
-      if(letr.letter === guessedLetter) {
+      if(letr.letter === guessedLetr) {
         letr.guessed = true;
         count++;
       }
