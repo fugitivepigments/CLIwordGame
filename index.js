@@ -135,13 +135,12 @@ var hangman = {
           that.promptUser()
         } else if (that.remainingGuess === 0) {
           console.log('Sadly, the game is over bud.');
-        } else if(alreadyGuessed === true) {
+        } else (alreadyGuessed === true)
           console.log('Letter has already been guessed, try a different one.');
-          that.promptUser();
-        }
 
-        that.promptUser();
+
       }
+      that.promptUser();
     });
   }
 }
