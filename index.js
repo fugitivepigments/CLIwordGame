@@ -24,14 +24,14 @@ var hangman = {
       message: 'How\'s about a rousin\' round of HANGMAN?'
     }]).then(function(answer) {
       if(answer.okplay){
-        that.newGame();
+        that.beginNewGame();
       } else {
         console.log('Bummer, come back when you\'re ready to hang.');
       }
     })
   },
   //start game
-  startGame: function() {
+  beginNewGame: function() {
     if (this.remainingGuess === 7) {
       console.log('Let\'s do this.');
       console.log('|||||||||||||');
@@ -44,7 +44,7 @@ var hangman = {
       this.promptUser();
     } else {
       this.resetRemaining();
-      this.startGame();
+      this.beginNewGame();
     }
   },
   resetRemaining: function() {
