@@ -25,8 +25,20 @@ function Word(wrdup) {
   //goes through and checks each letter against guessed letter
   this.checkLetter = function(guessedLetr) {
     var count = 0;
+
+    // console.log('TESTING ======> !!!!!!!! this.letters', this.letters);
+
     this.letters.forEach(function(letr) {
-      if(letr.letter === guessedLetr) {
+
+      // console.log('TESTING ======> letr.letter', letr.letter);
+      // console.log('TESTING ======> guessedLetr', guessedLetr);
+
+
+      ////////////////////////////////////
+      // THE ERROR WAS HERE YOU HAD: letr.
+      ////////////////////////////////////
+
+      if(letr.character === guessedLetr) {
         letr.guessed = true;
         count++;
       }
