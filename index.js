@@ -37,8 +37,16 @@ var hangman = {
       console.log('|||||||||||||');
       //random number based on bank of words
       var random = Math.floor(Math.random() * this.bank.length);
+
+      // console.log('TESTING ======> random', random);
+      // console.log('TESTING ======> this.bank', this.bank);
+      // console.log('TESTING ======> this.bank[random]', this.bank[random]);
+
       this.currentWord = new Word(this.bank[random]);
       this.currentWord.popLetters();
+
+      console.log('TESTING ======> ', this.currentWord);
+
       //display as blanks
       console.log(this.currentWord.wordDisplay());
       this.promptUser();
@@ -52,6 +60,9 @@ var hangman = {
   },
   promptUser: function() {
     var that = this;
+
+    // console.log('TESTING ======> this.currentWord UP TOP', this.currentWord);
+
     inquirer.prompt([{
       name: 'letrGuessed',
       type: 'input',
@@ -63,19 +74,37 @@ var hangman = {
           return false;
         }
       }
-    }]).then(function(letr) {
+    }]).then((letr) => {
+
+      // console.log('TESTING ======> letr', letr);
+      // console.log('TESTING ======> letr.letrGuessed', letr.letrGuessed);
+
       var letrUpper = (letr.letrGuessed).toUpperCase();
       var alreadyGuessed = false;
-      //check to see if letter was already guessed
+
+      console.log('TESTING ======> that.guessedLetters', that.guessedLetters);
+
+      // Check to see if letter was already guessed
       for (var i = 0; i < that.guessedLetters.length; i++) {
+
+        console.log('TESTING ======> letrUpper', letrUpper);
+        console.log('TESTING ======> that.guessedLetters[i]', that.guessedLetters[i]);
+
         if (letrUpper === that.guessedLetters[i]) {
           alreadyGuessed = true;
         }
       }
+
+
       if (alreadyGuessed === false) {
         that.guessedLetters.push(letrUpper);
 
+        // console.log('TESTING ======> this.currentWord', this.currentWord);
+
         var correct = that.currentWord.checkLetter(letrUpper);
+
+        console.log('TESTING ======> correct', correct);
+
         //if none found, user guessed wrong, take away guess
         if(correct === 0) {
           console.log('Guess again pal!');
@@ -101,15 +130,17 @@ var hangman = {
             console.log('Already guessed: ' + that.guessedLetters);
           }
         }
+
         if (that.remainingGuess > 0 && that.currentWord.foundWord === false) {
           that.promptUser()
         } else if (that.remainingGuess === 0) {
           console.log('Sadly, the game is over bud.');
-        } else {
+        } else (alreadyGuessed === true)
           console.log('Letter has already been guessed, try a different one.');
-          that.promptUser();
-        }
+
+
       }
+      that.promptUser();
     });
   }
 }
