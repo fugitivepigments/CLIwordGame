@@ -6,7 +6,6 @@ var wordBank = require('./wordList.js');
 var hangman = {
   bank: wordBank.newWord.wordList,
   remainingGuess: 13,
-  //hold letters guessed, checks if already guessed
   guessedLetters: [],
   count: 0,
   currentWord: null,
@@ -76,7 +75,6 @@ var hangman = {
       }
     }]).then((letr) => {
 
-      // console.log('TESTING ======> letr', letr);
       // console.log('TESTING ======> letr.letrGuessed', letr.letrGuessed);
 
       var letrUpper = (letr.letrGuessed).toUpperCase();
@@ -118,10 +116,12 @@ var hangman = {
           console.log('Already guessed: ' + that.guessedletters);
         } else {
           console.log('BOOM! You got one my guy!');
+          console.log('Already guessed: ' + that.guessedletters);
           //did user win
           if(that.currentWord.foundWord() === true) {
             console.log(that.currentWord.wordDisplay());
             console.log('Ladies and Goims we haaaaave a winna!');
+            that.startGame();
           } else {
             //start again
             console.log('Remaining attempts: ' + that.remainingGuess);
